@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA_Compatible" content="IE=edge">
+    <meta name="viewport" content="width-device-width", initial-scale="1.0">
+    <title> Hi! I am Abhi Soni</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/86bf7b69f7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo.png" class="logo">
+                <ul id="sideMenu">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark" onclick="closeMenu()"></i>
+                </ul>
+                <i class="fa-solid fa-bars" onclick="openMenu()"></i>
+            </nav>
+            <div class="header-text">
+                <h1>Hi, I am <span>Abhi</span><br>from Springfield, IL.</h1>
+            </div>
+        </div>
+    </div>
+        <!-----about------>
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <img src="images/background.jpeg" alt="Abhi's headshot">
+                </div>
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                         Nihil ex iure amet et quae. Labore aliquam dolor unde,
+                          aliquid a officiis assumenda quae cumque minima tempora
+                           perferendis vero blanditiis culpa!</p>
+
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
+                        <p class="tab-links" onclick="opentab('education')">Education</p>
+                        <p class="tab-links" onclick="opentab('experience')">Education</p>
+                    </div>
+
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Full-stack software enginnering</span><br>Creating Web Applications</li>
+                            <li><span>UI/UX</span><br>Design Web/App Interfaces</li>
+                            <li><span>App Development</span><br>Building Android/iOS Applications</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>2021-Current</span><br>Bachlor in Computer Science<br>@University of Illinois, Springfield</li>
+                            <li><span>2018-2020</span><br>High School in Biology<br>@St. Xavier's College in Maitighar, Kathmandu</li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span>SWE & IT Intern</span><br>Design database infrastructure with MongoDB and migrate Excel worksystems to the cloud by making Web Application</li>
+                            <li><span>STEM Ambassador</span><br>Plan and organize events and activities for campus students to be involved in STEM</li>
+                            <li><span>Learning Assistant/Peer Tutor</span><br>Help students with understanding DSA concepts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- --------services------- -->
+     <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Qualifications and Skills</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Full-stack Web Development</h2>
+                    <p>Description of First Services</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-database"></i>
+                    <h2>Database manageemnt</h2>
+                    <p>Description of second Services</p>
+                    <a href="#">Learn more</a>
+                </div>
+                <div>
+                    <i class="fa-solid fa-server"></i>
+                    <h2>IT manageemnt</h2>
+                    <p>Description of Third Services</p>
+                    <a href="#">Learn more</a>
+                </div>
+            </div>
+        </div>
+     </div>
+
+
+     <!-- ---------my work/portfolio-------  -->
+      <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Works</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/work1.png" alt="work1">
+                    <div class="layer">
+                        <h3>Project 1</h3>
+                        <p>Description of project 1</p>
+                        <a href="#">Check source code here: <i class="fa-solid fa-up-right-from-square"></i> </a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work2.png" alt="work2">
+                    <div class="layer">
+                        <h3>Project 2</h3>
+                        <p>Description of project 2</p>
+                        <a href="#">Check source code here: <i class="fa-solid fa-up-right-from-square"></i> </a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work3.png" alt="work3">
+                    <div class="layer">
+                        <h3>Project 3</h3>
+                        <p>Description of project 3</p>
+                        <a href="#">Check source code here: <i class="fa-solid fa-up-right-from-square"></i> </a>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="btn">See more</a>
+        </div>
+      </div>
+
+      <!-- ---------contact --------  -->
+
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>contact@example.com</p>
+                    <p><i class="fa-solid fa-phone"></i>123-345-1234</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                    <a href="images/myCV.pdf" download class="btn btn2">Download CV</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your name" required>
+                        <input type="email" name="Email" placeholder="Your email" required>
+                        <textarea name="Message" rows="6" placeholder="Your message"></textarea>
+                        <button type="submit" class="btn btn2">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            <p>Copyright <i class="fa-solid fa-copyright"></i> Abhi. 2021</p>
+        </div>
+
+    </div>
+
+<script>
+    var tablinks = document.getElementsByClassName("tab-links");
+    var tabcontents = document.getElementsByClassName("tab-contents");
+
+    function opentab(tabname){
+        for(tablink of tablinks){
+            tablink.classList.remove("active-link");
+        }
+        for(tabcontent of tabcontents){
+            tabcontent.classList.remove("active-tab");
+        }
+        event.currentTarget.classList.add("active-link");
+        document.getElementById(tabname).classList.add("active-tab");
+    }
+
+</script>
+
+<script>
+    var sideMenu = document.getElementById("sideMenu");
+    
+    function openMenu(){
+        sideMenu.style.right = 0;
+    }
+    function closeMenu(){
+        sideMenu.style.right = '-200px';
+    }
+
+</script>
+
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwr783i0EEYI7P2QrOlgYeQ5etKogKSb_hC33_6ZX8nkgVeQcavFLYgNhZy1G9rKl6R/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {
+            msg.innerHTML = "I have received your message and will respond shortly.Thank you for reaching out!"
+            setTimeout(function(){
+                msg.innerHTML=""
+            },5000)
+            form.reset()
+        })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+
+</body>
+
+</html>
