@@ -7,6 +7,8 @@
     <title> Welcome! I am Abhi!</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/86bf7b69f7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
 </head>
 
 <body>
@@ -41,11 +43,11 @@
                 </div>
                 <div class="about-col-2">
                     <h1 class="sub-title"><span style="color: #ff004f;">About </span>Me</h1>
-                    <p>Welcome to my portfolio! I am a rising senior at the University of Illinois,
+                    <p>Welcome to my portfolio! I am a senior at the University of Illinois,
                          Springfield, majoring in Computer Science with a minor in Mathematics. With a solid foundation
                           in software engineering and a passion for full-stack web development, I bring a diverse set of
                            skills and experiences to the table. My technical expertise spans the MERN stack, Java, Python,
-                            JavaScript, HTML, CSS, and database administration. <br> Feel free to explore my qualifications,
+                            JavaScript, HTML, CSS, and database administration to name the top few. <br> Feel free to explore my qualifications,
                              professional experiences, and projects below. I am always excited to connect and collaborate, so
                               don't hesitate to reach out using the contact form. I look forward to hearing from you!
                                <i class="fa-solid fa-face-smile-beam"></i>
@@ -60,7 +62,7 @@
                     <div class="tab-contents active-tab" id="skills">
                         <ul>
                             <li><span>Full-stack Web Development</span><br> Proficient in creating fully-functional web
-                                 applications with robust front-end user interfaces and efficient back-end systems for data management.</li>
+                                 applications with robust front-end user interfaces and efficient back-end systems for data management. I am very confortable using frameworks like Express, React, NestJS, Flask, dJango and more. I am also currently working with Azure cloud to tap into cloud deployment. </li>
                             <li><span>UI/UX</span><br>Skilled in designing intuitive and engaging web and app interfaces that
                                  enhance user experience.</li>
                             <li><span>App Development</span><br>Experienced in building Android and iOS applications, delivering
@@ -72,8 +74,8 @@
                             <li><span>2021-Current</span><br>Bachlor of Science <br> Major: Computer Science 
                                 <br> Minor: Mathematics
                                 <br>Graduation: May 2025 <br>@University of Illinois, Springfield</li>
-                                <p><strong style="text-decoration: underline;">Noteworthy Courses: </strong>Data Structures and Algorithms,
-                                    Web Development, Intro to Database Systems, Intro to Operating Systems, Discrete Structures, Java I and II.
+                                <p><strong style="text-decoration: underline;">Noteworthy Courses: </strong>Software Engineering Capstone, Data Structures and Algorithms, Advanced Statistical Methods, Deep Learning with Neural Networks,
+                                    Web Development, Intro to Database Systems, Intro to Operating Systems, Discrete Structures.
                                 </p>
                                 <p><strong style="text-decoration: underline;">Research Involvement: </strong> Investigating PINNs approach to study
                                     neural networks and predict complex physical phenomenon.
@@ -83,6 +85,17 @@
                     </div>
                     <div class="tab-contents" id="experience">
                         <ul>
+                            <li>
+                                <span>CloudDev Intern @Discovery Partner's Institute, Chicago</span>
+                                <ul>
+                                    <li>Contributed in full-stack development of IMPACT, a cloud-native research analytics platform in an agile team of 6,
+                                        implementing Azure Cloud Services, CI/CD pipelines & containerized workflows to connect institutions with researchers.</li>
+                                    <li>Contributed in full-stack development of IMPACT, a cloud-native research analytics platform in an agile team of 6,
+                                        implementing Azure Cloud Services, CI/CD pipelines & containerized workflows to connect institutions with researchers.</li>
+                                    <li>Established robust development infrastructure with Docker containerization and Azure DevOps pipelines, implementing
+                                        automated testing and deployment processes that reduced deployment time by 40% and enhanced code quality</li>
+                                </ul>
+                            </li>
                             <li>
                                 <span>WebApp Development Intern @National Fish and Wildlife Foundation, Washington DC</span>
                                 <ul>
@@ -147,7 +160,7 @@
       <div id="portfolio">
         <div class="container">
             <h1 class="sub-title">My Works</h1>
-            <div class="work-list">
+            <!-- <div class="work-list slider">
                 <div class="work">
                     <img src="images/work1.png" alt="work1">
                     <div class="layer">
@@ -173,7 +186,8 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn" target="_blank">See more</a>
+             -->
+            <a href="https://github.com/abhisoni24" class="btn" target="_blank">See on GitHub</a>
         </div>
       </div>
 
@@ -261,6 +275,34 @@
         .catch(error => console.error('Error!', error.message))
     })
   </script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.slider').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            prevArrow: '<button class="slick-prev">Previous</button>',
+            nextArrow: '<button class="slick-next">Next</button>',
+            responsive: [
+                {
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 1,
+                        slidesToScroll: 1
+                    }
+                }
+            ]
+        });
+    });
+</script>
 
 </body>
 
