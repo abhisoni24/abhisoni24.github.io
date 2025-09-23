@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - Abhi's Portfolio</title>
+    <link rel="stylesheet" href="pomodoro.css">
+    <script src="https://kit.fontawesome.com/86bf7b69f7.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <a href="index.html" class="back-btn">
+                <i class="fa-solid fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </nav>
+        
+        <div class="timer-container">
+            <h1>Pomodoro Timer</h1>
+            
+            <div class="timer-display">
+                <div class="time" id="timeDisplay">25:00</div>
+                <div class="session-type" id="sessionType">Work Session</div>
+            </div>
+            
+            <div class="controls">
+                <button id="startBtn" class="btn primary">Start</button>
+                <button id="pauseBtn" class="btn secondary">Pause</button>
+                <button id="resetBtn" class="btn secondary">Reset</button>
+            </div>
+            
+            <div class="settings">
+                <h3>Settings</h3>
+                <div class="setting-item">
+                    <label for="workTime">Work Time (minutes):</label>
+                    <input type="number" id="workTime" value="25" min="1" max="60">
+                </div>
+                <div class="setting-item">
+                    <label for="breakTime">Break Time (minutes):</label>
+                    <input type="number" id="breakTime" value="5" min="1" max="30">
+                </div>
+                <div class="setting-item">
+                    <label for="longBreakTime">Long Break Time (minutes):</label>
+                    <input type="number" id="longBreakTime" value="15" min="1" max="60">
+                </div>
+            </div>
+            
+            <div class="session-counter">
+                <p>Sessions Completed: <span id="sessionCount">0</span></p>
+                <button id="viewSummaryBtn" class="btn secondary">View Summary</button>
+            </div>
+        </div>
+        
+        <div class="summary-modal" id="summaryModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Session Summary</h2>
+                    <span class="close" id="closeModal">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="summaryContent"></div>
+                    <button id="clearHistoryBtn" class="btn danger">Clear History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="pomodoro.js"></script>
+</body>
+</html>
