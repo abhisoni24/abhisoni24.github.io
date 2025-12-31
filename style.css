@@ -202,9 +202,21 @@
 .services-list div a {
   text-decoration: none;
   color: #fff;
-  font-size: 12px;
-  margin-top: 20px;
+  font-size: 14px;
+  margin-top: 15px;
   display: block;
+  padding: 12px 20px;
+  background: #1ABC9C;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.services-list div a:hover {
+  background: #158f7e;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
 }
 
 .services-list div:hover {
