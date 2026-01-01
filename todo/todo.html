@@ -20,13 +20,13 @@
             
             <div class="input-section">
                 <div class="input-wrapper">
-                    <input 
-                        type="text" 
+                    <textarea 
                         id="taskInput" 
                         class="task-input" 
                         placeholder="Add a new task..."
                         autocomplete="off"
-                    >
+                        rows="1"
+                    ></textarea>
                     <button id="addBtn" class="btn primary">
                         <i class="fa-solid fa-plus"></i> Add Task
                     </button>
@@ -54,8 +54,19 @@
                 </div>
             </div>
 
-            <div class="tasks-list" id="tasksList">
-                <p class="empty-message">No tasks yet. Add one to get started! <i class="fa-solid fa-smile"></i></p>
+            <div class="tasks-container">
+                <div class="tasks-column">
+                    <h2 class="column-title">Active Tasks</h2>
+                    <div class="tasks-list" id="activeTasksList">
+                        <p class="empty-message">No active tasks! <i class="fa-solid fa-check-circle"></i></p>
+                    </div>
+                </div>
+                <div class="tasks-column">
+                    <h2 class="column-title">Completed Tasks</h2>
+                    <div class="tasks-list" id="completedTasksList">
+                        <p class="empty-message">No completed tasks yet! <i class="fa-solid fa-hourglass-end"></i></p>
+                    </div>
+                </div>
             </div>
 
             <div class="actions">

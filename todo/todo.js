@@ -14,7 +14,8 @@ class TodoApp {
     initializeElements() {
         this.taskInput = document.getElementById('taskInput');
         this.addBtn = document.getElementById('addBtn');
-        this.tasksList = document.getElementById('tasksList');
+        this.activeTasksList = document.getElementById('activeTasksList');
+        this.completedTasksList = document.getElementById('completedTasksList');
         this.totalCountEl = document.getElementById('totalCount');
         this.completedCountEl = document.getElementById('completedCount');
         this.activeCountEl = document.getElementById('activeCount');
@@ -26,7 +27,15 @@ class TodoApp {
     bindEvents() {
         this.addBtn.addEventListener('click', () => this.addTask());
         this.taskInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') this.addTask();
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                this.addTask();
+            }
+        });
+        
+        // Auto-expand input field
+        this.taskInput.addEventListener('input', () => {
+            this.autoExpandTextarea(this.taskInput);
         });
         
         this.clearCompletedBtn.addEventListener('click', () => this.clearCompleted());
@@ -50,6 +59,16 @@ class TodoApp {
         } else {
             this.tasks = [];
         }
+    }
+
+    // Auto-expand textarea to fit content
+    autoExpandTextarea(textarea) {
+        // Reset height to 0 to measure the true scrollHeight
+        textarea.style.height = '0px';
+        // Get the actual content height
+        const scrollHeight = textarea.scrollHeight;
+        // Set height to content height, capped at 300px
+        textarea.style.height = Math.min(scrollHeight, 300) + 'px';
     }
 
     // Save tasks to localStorage
@@ -76,6 +95,7 @@ class TodoApp {
         this.tasks.push(task);
         this.saveTasks();
         this.taskInput.value = '';
+        this.autoExpandTextarea(this.taskInput);
         this.taskInput.focus();
         this.render();
     }
@@ -103,6 +123,14 @@ class TodoApp {
     startEditTask(id) {
         this.editingTaskId = id;
         this.render();
+        
+        // Scroll the task into view after rendering
+        setTimeout(() => {
+            const editItem = this.tasksList.querySelector(`[data-edit-id="${id}"]`);
+            if (editItem) {
+                editItem.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 0);
     }
 
     // Save edited task
@@ -180,65 +208,101 @@ class TodoApp {
 
     // Render the task list
     render() {
-        const filteredTasks = this.getFilteredTasks();
+        const activeTasks = this.tasks.filter(t => !t.completed);
+        const completedTasks = this.tasks.filter(t => t.completed);
         
-        if (filteredTasks.length === 0) {
-            this.tasksList.innerHTML = '<p class="empty-message">No tasks yet. Add one to get started! <i class="fa-solid fa-smile"></i></p>';
+        // Render active tasks
+        if (activeTasks.length === 0) {
+            this.activeTasksList.innerHTML = '<p class="empty-message">No active tasks! <i class="fa-solid fa-check-circle"></i></p>';
         } else {
-            this.tasksList.innerHTML = filteredTasks.map(task => {
+            this.activeTasksList.innerHTML = activeTasks.map(task => {
                 if (this.editingTaskId === task.id) {
                     return this.renderEditForm(task);
                 }
                 return this.renderTaskItem(task);
             }).join('');
-
-            // Bind events for rendered elements
-            this.tasksList.querySelectorAll('.task-checkbox').forEach(checkbox => {
-                checkbox.addEventListener('change', (e) => {
-                    this.toggleTask(parseInt(e.target.dataset.id));
-                });
-            });
-
-            this.tasksList.querySelectorAll('.task-edit-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    this.startEditTask(parseInt(e.target.dataset.id));
-                });
-            });
-
-            this.tasksList.querySelectorAll('.task-delete-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    this.deleteTask(parseInt(e.target.dataset.id));
-                });
-            });
-
-            // Bind edit form events
-            this.tasksList.querySelectorAll('.edit-form').forEach(form => {
-                const saveBtn = form.querySelector('.edit-save-btn');
-                const cancelBtn = form.querySelector('.edit-cancel-btn');
-                const input = form.querySelector('.edit-input');
-                const taskId = parseInt(saveBtn.dataset.id);
-
-                saveBtn.addEventListener('click', () => {
-                    this.saveEditTask(taskId, input.value);
-                });
-
-                cancelBtn.addEventListener('click', () => {
-                    this.cancelEdit();
-                });
-
-                input.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        this.saveEditTask(taskId, input.value);
-                    }
-                });
-
-                // Focus the input for better UX
-                input.focus();
-                input.select();
-            });
+            this.bindTaskEvents(this.activeTasksList);
+        }
+        
+        // Render completed tasks
+        if (completedTasks.length === 0) {
+            this.completedTasksList.innerHTML = '<p class="empty-message">No completed tasks yet! <i class="fa-solid fa-hourglass-end"></i></p>';
+        } else {
+            this.completedTasksList.innerHTML = completedTasks.map(task => {
+                if (this.editingTaskId === task.id) {
+                    return this.renderEditForm(task);
+                }
+                return this.renderTaskItem(task);
+            }).join('');
+            this.bindTaskEvents(this.completedTasksList);
         }
 
         this.updateStats();
+    }
+
+    // Bind events to task elements
+    bindTaskEvents(container) {
+        // Bind checkbox events
+        container.querySelectorAll('.task-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                this.toggleTask(parseInt(e.target.dataset.id));
+            });
+        });
+
+        // Bind edit button events
+        container.querySelectorAll('.task-edit-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const id = parseInt(e.currentTarget.dataset.id);
+                this.startEditTask(id);
+            });
+        });
+
+        // Bind delete button events
+        container.querySelectorAll('.task-delete-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const id = parseInt(e.currentTarget.dataset.id);
+                this.deleteTask(id);
+            });
+        });
+
+        // Bind edit form events
+        container.querySelectorAll('.edit-form').forEach(form => {
+            const saveBtn = form.querySelector('.edit-save-btn');
+            const cancelBtn = form.querySelector('.edit-cancel-btn');
+            const input = form.querySelector('.edit-input');
+            const taskId = parseInt(saveBtn.dataset.id);
+
+            saveBtn.addEventListener('click', () => {
+                this.saveEditTask(taskId, input.value);
+            });
+
+            cancelBtn.addEventListener('click', () => {
+                this.cancelEdit();
+            });
+
+            input.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    this.saveEditTask(taskId, input.value);
+                }
+            });
+            
+            // Auto-expand edit input
+            input.addEventListener('input', () => {
+                this.autoExpandTextarea(input);
+            });
+
+            // Focus the input for better UX
+            input.focus();
+            input.select();
+            
+            // Auto-expand on load
+            this.autoExpandTextarea(input);
+        });
     }
 
     // Render individual task item
@@ -268,14 +332,13 @@ class TodoApp {
     // Render edit form
     renderEditForm(task) {
         return `
-            <div class="task-item">
+            <div class="task-item" data-edit-id="${task.id}">
                 <form class="edit-form" onsubmit="return false;">
-                    <input 
-                        type="text" 
+                    <textarea 
                         class="edit-input" 
-                        value="${this.escapeHtml(task.text)}"
                         placeholder="Edit task..."
-                    >
+                        rows="1"
+                    >${this.escapeHtml(task.text)}</textarea>
                     <button type="button" class="edit-save-btn" data-id="${task.id}">
                         <i class="fa-solid fa-check"></i> Save
                     </button>
