@@ -2,315 +2,126 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA_Compatible" content="IE=edge">
-    <meta name="viewport" content="width-device-width", initial-scale="1.0">
-    <title> Welcome! I am Abhi!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abhi | PhD Student in Computer Science</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/86bf7b69f7.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
 </head>
-
 <body>
-    <div id="header">
-        <div class="container">
-            <nav>
-                <img src="images/logo.png" class="logo">
-                <ul id="sideMenu">
-                    <li><a href="#header">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <i class="fa-solid fa-xmark" onclick="closeMenu()"></i>
-                </ul>
-                <i class="fa-solid fa-bars" onclick="openMenu()"></i>
-            </nav>
-            <div class="header-text">
-                <h1>Hi, I am <span>Abhi</span><br>A full-stack SWE <br>from Springfield, IL.</h1>
-            </div>
-            <div class="header-image">
-                
-            </div>
-        </div>
-    </div>
-        <!-----about------>
-    <div id="about">
-        <div class="container">
-            <div class="row">
-                <div class="about-col-1">
-                    <img src="images/headshot.jpeg" alt="Abhi's headshot">
-                </div>
-                <div class="about-col-2">
-                    <h1 class="sub-title"><span style="color: #ff004f;">About </span>Me</h1>
-                    <p>Welcome to my portfolio! I am a senior at the University of Illinois,
-                         Springfield, majoring in Computer Science with a minor in Mathematics. With a solid foundation
-                          in software engineering and a passion for full-stack web development, I bring a diverse set of
-                           skills and experiences to the table. My technical expertise spans the MERN stack, Java, Python,
-                            JavaScript, HTML, CSS, and database administration to name the top few. <br> Feel free to explore my qualifications,
-                             professional experiences, and projects below. I am always excited to connect and collaborate, so
-                              don't hesitate to reach out using the contact form. I look forward to hearing from you!
-                               <i class="fa-solid fa-face-smile-beam"></i>
-                    </p>
 
-                    <div class="tab-titles">
-                        <p class="tab-links active-link" onclick="opentab('skills')">Skills</p>
-                        <p class="tab-links" onclick="opentab('education')">Education</p>
-                        <p class="tab-links" onclick="opentab('experience')">Work Experience</p>
-                    </div>
-
-                    <div class="tab-contents active-tab" id="skills">
-                        <ul>
-                            <li><span>Full-stack Web Development</span><br> Proficient in creating fully-functional web
-                                 applications with robust front-end user interfaces and efficient back-end systems for data management. I am very confortable using frameworks like Express, React, NestJS, Flask, dJango and more. I am also currently working with Azure cloud to tap into cloud deployment. </li>
-                            <li><span>UI/UX</span><br>Skilled in designing intuitive and engaging web and app interfaces that
-                                 enhance user experience.</li>
-                            <li><span>App Development</span><br>Experienced in building Android and iOS applications, delivering
-                                 seamless and high-performing mobile solutions.</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="education">
-                        <ul>
-                            <li><span>2021-Current</span><br>Bachlor of Science <br> Major: Computer Science 
-                                <br> Minor: Mathematics
-                                <br>Graduation: May 2025 <br>@University of Illinois, Springfield</li>
-                                <p><strong style="text-decoration: underline;">Noteworthy Courses: </strong>Software Engineering Capstone, Data Structures and Algorithms, Advanced Statistical Methods, Deep Learning with Neural Networks,
-                                    Web Development, Intro to Database Systems, Intro to Operating Systems, Discrete Structures.
-                                </p>
-                                <p><strong style="text-decoration: underline;">Research Involvement: </strong> Investigating PINNs approach to study
-                                    neural networks and predict complex physical phenomenon.
-                                </p>
-                            <li><span>2018-2020</span><br>High School in Biology<br>@St. Xavier's College in Maitighar, Kathmandu</li>
-                        </ul>
-                    </div>
-                    <div class="tab-contents" id="experience">
-                        <ul>
-                            <li>
-                                <span>CloudDev Intern @Discovery Partner's Institute, Chicago</span>
-                                <ul>
-                                    <li>Contributed in full-stack development of IMPACT, a cloud-native research analytics platform in an agile team of 6,
-                                        implementing Azure Cloud Services, CI/CD pipelines & containerized workflows to connect institutions with researchers.</li>
-                                    <li>Contributed in full-stack development of IMPACT, a cloud-native research analytics platform in an agile team of 6,
-                                        implementing Azure Cloud Services, CI/CD pipelines & containerized workflows to connect institutions with researchers.</li>
-                                    <li>Established robust development infrastructure with Docker containerization and Azure DevOps pipelines, implementing
-                                        automated testing and deployment processes that reduced deployment time by 40% and enhanced code quality</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>WebApp Development Intern @National Fish and Wildlife Foundation, Washington DC</span>
-                                <ul>
-                                    <li>Designed and implemented robust database infrastructures using MongoDB.</li>
-                                    <li>Migrated legacy Excel work systems to cloud-based solutions through the
-                                         development of a comprehensive web application.</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>STEM Ambassador</span>
-                                <ul>
-                                    <li>Planned and organized engaging events and activities to foster student involvement in STEM fields.</li>
-                                    <li>Actively promoted STEM initiatives on campus, enhancing student participation and interest.</li>
-                                </ul>
-                            </li>
-                            <li>
-                                <span>Learning Assistant/Peer Tutor</span>
-                                <ul>
-                                    <li>Provided academic support to students, helping them grasp complex Data Structures and Algorithms (DSA) concepts.</li>
-                                    <li>Facilitated study sessions and offered personalized tutoring to improve student understanding and performance.</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- --------services------- -->
-     <div id="services">
-        <div class="container">
-            <h1 class="sub-title">My <span style="color: #ff004f;">Qualifications </span>and <span style="color: #ff004f;">Skills</span></h1>
-            <div class="services-list">
-                <div>
-                    <i class="fa-solid fa-code"></i>
-                    <h2>Full-stack Web Development</h2>
-                    <p>I am proficient in creating fully-functional web applications with robust front-end user interfaces and efficient back-end systems
-                         for data management.</p>
-                    <a href="https://www.w3schools.com/whatis/whatis_fullstack.asp" target="_blank">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-database"></i>
-                    <h2>Database Administration</h2>
-                    <p>I can perform database administration, excelling in designing, implementing, and maintaining relational and non-relational databases,
-                         optimizing performance, ensuring data integrity, and managing efficient data storage solutions.</p>
-                    <a href="https://www.techopedia.com/definition/24080/database-administration" target="_blank">Learn more</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-brain"></i>
-                    <h2>PINNs Academic Researcher</h2>
-                    <p>As a student researcher specializing in Physics-Informed Neural Networks (PINNs), I design, train, and apply these models to solve
-                         complex differential equations, leveraging machine learning frameworks to enhance the understanding of physical phenomena.</p>
-                    <a href="https://en.wikipedia.org/wiki/Physics-informed_neural_networks" target="_blank">Learn more</a>
-                </div>
-                <div>
-                <i class="fa-solid fa-clock"></i>
-                <h2>Productivity Tools</h2>
-                <p>I also build productivity tools to help with time management and focus. Check out my custom Pomodoro timer designed for effective study sessions, or try the to-do application for managing your tasks.</p>
-                <a href="pomodoro/pomodoro.html">Try Pomodoro Timer</a>
-                <a href="todo/todo.html">Try To-Do App</a>
-            </div>
-            </div>
-        </div>
-     </div>
-
-
-     <!-- ---------my work/portfolio-------  -->
-      <div id="portfolio">
-        <div class="container">
-            <h1 class="sub-title">My Works</h1>
-            <!-- <div class="work-list slider">
-                <div class="work">
-                    <img src="images/work1.png" alt="work1">
-                    <div class="layer">
-                        <h3>Project 1</h3>
-                        <p>Description of project 1</p>
-                        <a href="#">Check source code here: <i class="fa-solid fa-up-right-from-square"></i> </a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work2.png" alt="work2">
-                    <div class="layer">
-                        <h3>Project 2</h3>
-                        <p>Description of project 2</p>
-                        <a href="#">Check source code here: <i class="fa-solid fa-up-right-from-square"></i> </a>
-                    </div>
-                </div>
-                <div class="work">
-                    <img src="images/work3.png" alt="work3">
-                    <div class="layer">
-                        <h3>Project 3</h3>
-                        <p>Description of project 3</p>
-                        <a href="#">Check source code here: <i class="fa-solid fa-up-right-from-square"></i> </a>
-                    </div>
-                </div>
-            </div>
-             -->
-            <a href="https://github.com/abhisoni24" class="btn" target="_blank">See on GitHub</a>
-        </div>
-      </div>
-
-      <!-- ---------contact section --------  -->
-
-    <div id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="contact-left">
-                    <h1 class="sub-title"><span style="color: #ff004f;">Contact</span> Me</h1><br>
-                    <a href="mailto::asoni24@uis.edu" style="text-decoration: none; color: #fff;"><i class="fa-solid fa-paper-plane"></i> asoni24@uis.edu</a>
-                    <p><i class="fa-solid fa-building-columns"></i></i>University of Illinois, Springfield</p>
-                    <div class="social-icons">
-                        <a href="https://linkedin.com/in/asoni24" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/abhisoni24" target="_blank"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                    <a href="Resume.pdf" download class="btn btn2">Download CV</a>
-                </div>
-                <div class="contact-right">
-                    <p>I promise this form works. Try sending a reach out? <i class="fa-solid fa-face-laugh-wink" style="color: #ff004f; font-size: 40px; text-align: center; text-decoration: dashed;"></i></p>
-                    <form name="submit-to-google-sheet">
-                        <input type="text" name="Name" placeholder="Your name" required>
-                        <input type="email" name="Email" placeholder="Your email" required>
-                        <textarea name="Message" rows="6" placeholder="Your message"></textarea>
-                        <button type="submit" class="btn btn2">Submit</button>
-                    </form>
-                    <span id="msg"></span>
-                </div>
-            </div>
+    <aside id="sidebar">
+        <div class="profile">
+            <img src="images/headshot.jpeg" alt="Abhi Soni" class="profile-img">
+            <h1>Abhi Soni</h1>
+            <p>PhD Student in Computer Science<br>University of Illinois Chicago (UIC)</p>
         </div>
 
-        <div class="copyright">
-            <p>Copyright <i class="fa-solid fa-copyright"></i> Abhi. 2021</p>
+        <nav>
+            <ul>
+                <li><a href="#about">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#toolkit">Toolkit</a></li>
+            </ul>
+        </nav>
+
+        <div class="contact">
+            <p><strong>Email:</strong> asoni24@uic.edu</p>
+            <p><strong>Office:</strong> UIC CS Department</p>
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/asoni24" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/abhisoni24" target="_blank"><i class="fa-brands fa-github"></i></a>
+            </div>
         </div>
+    </aside>
 
-    </div>
+    <main id="main">
+        <section id="about" class="intro">
+            <h2 class="section-title">Research Statement</h2>
+            <p>
+                I am a PhD student in Computer Science at the University of Illinois Chicago, advised by 
+                <strong>Prof. Saeid Tizpaz-Niari</strong>. My research is centered on 
+                <strong>Safe Code Generation within Responsible Machine Learning</strong>.
+            </p>
+            <p>
+                My work lies at the intersection of Programming Languages (PL), ML Safety, and Formal Methods. 
+                I focus on ensuring the correctness, reliability, and trustworthiness of AI-generated software 
+                artifacts by applying rigorous verification techniques and type system design.
+            </p>
+        </section>
 
-<!-- -------------script for displaying contents of active tabs ------------  -->
-<script>
-    var tablinks = document.getElementsByClassName("tab-links");
-    var tabcontents = document.getElementsByClassName("tab-contents");
+        <section id="research">
+            <h2 class="section-title">Research Areas</h2>
+            <div class="research-areas">
+                <div class="research-item">
+                    <h3>Safe Code Generation</h3>
+                    <p>Developing techniques to provide correctness and safety guarantees for code produced by large language models. We utilize formal methods to verify that generated artifacts adhere to specified constraints.</p>
+                    <div class="venues">[PLDI, POPL, OOPSLA]</div>
+                </div>
+                <div class="research-item">
+                    <h3>Responsible Machine Learning</h3>
+                    <p>Investigating the robustness and trustworthiness of ML-driven systems. This includes studying the reliability of AI assistants in critical domains like software development and data analysis.</p>
+                    <div class="venues">[ICSE, ASE, FSE]</div>
+                </div>
+                <div class="research-item">
+                    <h3>Programming Language Theory</h3>
+                    <p>Applying formal semantics, type systems, and environment models to improve the verification of modern software systems. My work involves implementing interpreters for functional languages like Lettuce.</p>
+                    <div class="venues">[TOPLAS, JFP]</div>
+                </div>
+            </div>
+        </section>
 
-    function opentab(tabname){
-        for(tablink of tablinks){
-            tablink.classList.remove("active-link");
-        }
-        for(tabcontent of tabcontents){
-            tabcontent.classList.remove("active-tab");
-        }
-        event.currentTarget.classList.add("active-link");
-        document.getElementById(tabname).classList.add("active-tab");
-    }
+        <section id="news">
+            <h2 class="section-title">News</h2>
+            <ul class="news-list">
+                <li class="news-item">
+                    <span class="news-date">Aug 2025</span>
+                    <span class="news-content">Joined the PhD program in Computer Science at University of Illinois Chicago (UIC)!</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">Jun 2025</span>
+                    <span class="news-content">Began working with Prof. Saeid Tizpaz-Niari on Safe Code Generation research.</span>
+                </li>
+                <li class="news-item">
+                    <span class="news-date">May 2025</span>
+                    <span class="news-content">Successfully completed my Bachelor's degree in Computer Science at UIS.</span>
+                </li>
+            </ul>
+        </section>
 
-</script>
+        <section id="publications">
+            <h2 class="section-title">Selected Projects</h2>
+            <div class="pub-item">
+                <h4>Lettuce Interpreter Implementation</h4>
+                <p class="authors">Abhi Soni</p>
+                <p>A functional language interpreter built in Scala focusing on operational semantics, type checking, and store-based memory models.</p>
+                <div class="links">
+                    <a href="https://github.com/abhisoni24" target="_blank">[Source Code]</a>
+                </div>
+            </div>
+        </section>
 
-<!-- ----------script for opening and closing menu on small screens ---------  -->
-<script>
-    var sideMenu = document.getElementById("sideMenu");
-    
-    function openMenu(){
-        sideMenu.style.right = 0;
-    }
-    function closeMenu(){
-        sideMenu.style.right = '-200px';
-    }
+        <section id="toolkit">
+            <h2 class="section-title">Researcher Toolkit</h2>
+            <div class="toolkit-grid">
+                <div class="tool-card">
+                    <h3>Pomodoro Timer</h3>
+                    <p>A focus-oriented timer for deep work sessions, designed to manage research tasks effectively.</p>
+                    <a href="pomodoro/pomodoro.html">Launch Timer</a>
+                </div>
+                <div class="tool-card">
+                    <h3>To-Do Application</h3>
+                    <p>Persistent task management for academic projects, tracking deadlines and research goals.</p>
+                    <a href="todo/todo.html">Open App</a>
+                </div>
+            </div>
+        </section>
 
-</script>
-
-<!-- --------------script for contact form-----------------  -->
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwr783i0EEYI7P2QrOlgYeQ5etKogKSb_hC33_6ZX8nkgVeQcavFLYgNhZy1G9rKl6R/exec'
-    const form = document.forms['submit-to-google-sheet']
-    const msg = document.getElementById("msg")
-  
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => {
-            msg.innerHTML = "I have received your message and will respond shortly.Thank you for reaching out!"
-            setTimeout(function(){
-                msg.innerHTML=""
-            },5000)
-            form.reset()
-        })
-        .catch(error => console.error('Error!', error.message))
-    })
-  </script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.slider').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            prevArrow: '<button class="slick-prev">Previous</button>',
-            nextArrow: '<button class="slick-next">Next</button>',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        slidesToShow: 2,
-                        slidesToScroll: 1
-                    }
-                },
-                {
-                    breakpoint: 480,
-                    settings: {
-                        slidesToShow: 1,
-                        slidesToScroll: 1
-                    }
-                }
-            ]
-        });
-    });
-</script>
+        <footer>
+            <p>&copy; 2024 Abhi Soni. Designed with a focus on academic clarity.</p>
+        </footer>
+    </main>
 
 </body>
-
 </html>
