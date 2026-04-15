@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
 :root {
+  color-scheme: light;
   --main-bg: #f8f9fa;
   --nav-bg: #ffffff;
   --card-bg: #ffffff;
@@ -9,8 +10,32 @@
   --text-color: #222222;
   --muted-text: #666666;
   --border-color: #eeeeee;
+  --input-bg: #ffffff;
+  --secondary-btn-bg: #ffffff;
+  --secondary-btn-hover: #f1f1f1;
+  --filter-bg: #ffffff;
+  --empty-bg: #fafafa;
+  --completed-bg: #fafafa;
   --font-heading: 'Source Sans Pro', sans-serif;
   --font-body: 'Inter', sans-serif;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --main-bg: #0f141a;
+  --nav-bg: #16202a;
+  --card-bg: #16202a;
+  --accent-color: #dbe7f2;
+  --link-color: #7ec3f2;
+  --text-color: #dde5ee;
+  --muted-text: #aab6c4;
+  --border-color: #263240;
+  --input-bg: #121b24;
+  --secondary-btn-bg: #1b2733;
+  --secondary-btn-hover: #223242;
+  --filter-bg: #1b2733;
+  --empty-bg: #121b24;
+  --completed-bg: #121b24;
 }
 
 * {
@@ -99,7 +124,7 @@ h1 {
     flex: 1;
     max-width: 600px;
     padding: 12px 15px;
-    background: #fff;
+    background: var(--input-bg);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     color: var(--text-color);
@@ -143,12 +168,12 @@ h1 {
 }
 
 .btn.secondary {
-    background: #fff;
+    background: var(--secondary-btn-bg);
     color: var(--accent-color);
 }
 
 .btn.secondary:hover {
-    background: #f1f1f1;
+    background: var(--secondary-btn-hover);
     transform: translateY(-2px);
 }
 
@@ -173,7 +198,7 @@ h1 {
 
 .filter-btn {
     padding: 8px 18px;
-    background: #fff;
+    background: var(--filter-bg);
     border: 1px solid var(--border-color);
     border-radius: 6px;
     color: var(--muted-text);
@@ -260,7 +285,7 @@ h1 {
     color: var(--muted-text);
     padding: 40px 20px;
     font-size: 15px;
-    background: #fafafa;
+    background: var(--empty-bg);
     border-radius: 8px;
     border: 1px dashed var(--border-color);
 }
@@ -287,7 +312,7 @@ h1 {
 .task-item.completed {
     opacity: 0.6;
     border-left-color: #bdc3c7;
-    background: #fafafa;
+    background: var(--completed-bg);
 }
 
 .task-item.completed .task-text {
@@ -343,7 +368,7 @@ h1 {
 .edit-input {
     flex: 1;
     padding: 10px;
-    background: #fff;
+    background: var(--input-bg);
     border: 1px solid var(--link-color);
     border-radius: 4px;
     color: var(--text-color);

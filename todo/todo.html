@@ -6,6 +6,15 @@
     <title>To-Do Application - Abhi's Portfolio</title>
     <link rel="stylesheet" href="todo.css">
     <script src="https://kit.fontawesome.com/86bf7b69f7.js" crossorigin="anonymous"></script>
+    <script>
+        (function () {
+            const storageKey = 'preferred-theme';
+            const storedTheme = localStorage.getItem(storageKey);
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const theme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+            document.documentElement.setAttribute('data-theme', theme);
+        }());
+    </script>
 </head>
 <body>
     <div class="container">
