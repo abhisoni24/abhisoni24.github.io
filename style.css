@@ -1,15 +1,31 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
 
 :root {
+  color-scheme: light;
   --sidebar-bg: #f5f5f5;
   --sidebar-text: #333333;
   --main-bg: #ffffff;
   --main-text: #222222;
-  --accent-color: #2c3e50; /* Deep Slate Blue */
+  --accent-color: #2c3e50;
   --link-color: #2980b9;
   --border-color: #eeeeee;
   --font-heading: 'Source Sans Pro', sans-serif;
   --font-body: 'Inter', sans-serif;
+  --toggle-bg: #ffffff;
+  --toggle-text: #222222;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --sidebar-bg: #16202a;
+  --sidebar-text: #e7edf5;
+  --main-bg: #0f141a;
+  --main-text: #dde5ee;
+  --accent-color: #dbe7f2;
+  --link-color: #7ec3f2;
+  --border-color: #263240;
+  --toggle-bg: #1b2733;
+  --toggle-text: #f2f6fb;
 }
 
 * {
@@ -28,6 +44,33 @@ body {
   color: var(--main-text);
   line-height: 1.6;
   display: flex;
+}
+
+.theme-toggle {
+  align-self: flex-end;
+  border: 1px solid var(--border-color);
+  background: var(--toggle-bg);
+  color: var(--toggle-text);
+  border-radius: 999px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 24px;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.theme-toggle:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.theme-toggle-icon {
+  font-size: 14px;
+  line-height: 1;
 }
 
 /* Sidebar Styling */
@@ -60,6 +103,10 @@ body {
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+:root[data-theme='dark'] #sidebar .profile .profile-img {
+  border-color: #24303c;
+}
+
 #sidebar .profile h1 {
   font-family: var(--font-heading);
   font-size: 24px;
@@ -71,6 +118,12 @@ body {
 #sidebar .profile p {
   font-size: 14px;
   color: #666;
+}
+
+:root[data-theme='dark'] #sidebar .profile p,
+:root[data-theme='dark'] .pub-item .authors,
+:root[data-theme='dark'] footer {
+  color: #aab6c4;
 }
 
 #sidebar nav {
@@ -169,6 +222,11 @@ h2.section-title {
 
 .research-item p {
   color: #444;
+}
+
+:root[data-theme='dark'] .research-item p,
+:root[data-theme='dark'] .tool-card p {
+  color: #c3ced9;
 }
 
 .research-item .venues {
@@ -281,6 +339,12 @@ footer {
     padding: 30px;
     border-right: none;
     border-bottom: 1px solid var(--border-color);
+  }
+
+  .theme-toggle {
+    align-self: stretch;
+    justify-content: center;
+    margin-bottom: 20px;
   }
   
   #main {

@@ -10,6 +10,11 @@
 <body>
 
     <aside id="sidebar">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+            <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+            <span class="theme-toggle-label">Dark mode</span>
+        </button>
+
         <div class="profile">
             <img src="images/headshot.jpeg" alt="Abhi Soni" class="profile-img">
             <h1>Abhi Soni</h1>
@@ -30,8 +35,8 @@
             <p><strong>Email:</strong> asoni24@uic.edu</p>
             <p><strong>Office:</strong> UIC CS Department</p>
             <div class="social-icons">
-                <a href="https://linkedin.com/in/asoni24" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/abhisoni24" target="_blank"><i class="fa-brands fa-github"></i></a>
+                <a href="https://linkedin.com/in/asoni24" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com/abhisoni24" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-github"></i></a>
             </div>
         </div>
     </aside>
@@ -97,7 +102,7 @@
                 <p class="authors">Abhi Soni</p>
                 <p>A functional language interpreter built in Scala focusing on operational semantics, type checking, and store-based memory models.</p>
                 <div class="links">
-                    <a href="https://github.com/abhisoni24" target="_blank">[Source Code]</a>
+                    <a href="https://github.com/abhisoni24" target="_blank" rel="noopener noreferrer">[Source Code]</a>
                 </div>
             </div>
         </section>
@@ -122,6 +127,33 @@
             <p>&copy; 2024 Abhi Soni. Designed with a focus on academic clarity.</p>
         </footer>
     </main>
+
+    <script>
+        (function () {
+            const storageKey = 'preferred-theme';
+            const root = document.documentElement;
+            const toggle = document.getElementById('theme-toggle');
+            const label = toggle.querySelector('.theme-toggle-label');
+            const icon = toggle.querySelector('.theme-toggle-icon');
+
+            function applyTheme(theme) {
+                root.setAttribute('data-theme', theme);
+                const darkMode = theme === 'dark';
+                label.textContent = darkMode ? 'Light mode' : 'Dark mode';
+                icon.textContent = darkMode ? '☀' : '◐';
+            }
+
+            const storedTheme = localStorage.getItem(storageKey);
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyTheme(storedTheme || (systemPrefersDark ? 'dark' : 'light'));
+
+            toggle.addEventListener('click', function () {
+                const nextTheme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                localStorage.setItem(storageKey, nextTheme);
+                applyTheme(nextTheme);
+            });
+        }());
+    </script>
 
 </body>
 </html>
