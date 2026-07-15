@@ -16,33 +16,58 @@
         <button class="btn-menu" data-players="3">3 Players</button>
         <button class="btn-menu" data-players="4">4 Players</button>
         <button class="btn-menu" data-players="5">5 Players</button>
+        <!-- <button class="btn-menu" data-players="*">Rules of Ludo</button> -->
       </div>
     </div>
   </div>
 
   <div id="game-container" style="display: none;">
-    <div id="sidebar">
-      <h1 id="game-title">Ludo</h1>
-      <div id="turn-indicator">Turn: <span id="current-player-name" style="font-weight: 700;">-</span></div>
-      <div style="display: flex; gap: 10px; margin-bottom: 10px;">
-        <button id="btn-roll" style="flex: 1;">Roll Dice</button>
-        <button id="btn-home" style="flex: 1; background: #e74c3c;">Home</button>
-      </div>
-      <div id="dice-result">-</div>
-      
-      <div class="histogram-container">
-        <h3 style="margin-bottom: 5px;">Rolls</h3>
-        <div id="histogram"></div>
-      </div>
-      
-      <div id="message-area">Loading...</div>
-    </div>
     <div id="board-container">
       <svg id="board-svg" viewBox="-400 -400 800 800" xmlns="http://www.w3.org/2000/svg">
         <g id="layer-paths"></g>
         <g id="layer-yards"></g>
         <g id="layer-tokens"></g>
       </svg>
+      
+      <div class="ui-top-left">
+        <h1 id="game-title">Ludo</h1>
+        <div id="turn-indicator">Turn: <span id="current-player-name" style="font-weight: 700;">-</span></div>
+        <div id="message-area">Loading...</div>
+        <div id="dice-result" style="display: none;">-</div>
+      </div>
+      
+      <div class="ui-top-right">
+        <button id="btn-rules" style="background: #3498db; margin-right: 10px;" onclick="window.location.href='rules.html'">Rules</button>
+        <button id="btn-home" style="background: #e74c3c;">Home</button>
+      </div>
+
+      <div class="ui-center-wrapper">
+        <div class="dice-scene" id="dice-scene">
+          <div class="dice-cube" id="dice-cube">
+            <div class="dice-face dice-face-1"><div class="dot"></div></div>
+            <div class="dice-face dice-face-2"><div class="dot"></div><div class="dot"></div></div>
+            <div class="dice-face dice-face-3"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            <div class="dice-face dice-face-4">
+              <div class="column"><div class="dot"></div><div class="dot"></div></div>
+              <div class="column"><div class="dot"></div><div class="dot"></div></div>
+            </div>
+            <div class="dice-face dice-face-5">
+              <div class="column"><div class="dot"></div><div class="dot"></div></div>
+              <div class="column"><div class="dot"></div></div>
+              <div class="column"><div class="dot"></div><div class="dot"></div></div>
+            </div>
+            <div class="dice-face dice-face-6">
+              <div class="column"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+              <div class="column"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-bottom-right histogram-container">
+        <h3 style="margin-bottom: 5px;">Rolls</h3>
+        <div id="histogram"></div>
+      </div>
     </div>
   </div>
 

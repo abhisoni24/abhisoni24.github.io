@@ -14,7 +14,6 @@
   const menuOverlay = document.getElementById('menu-overlay');
   const gameContainer = document.getElementById('game-container');
   const gameTitle = document.getElementById('game-title');
-  const btnRoll = document.getElementById('btn-roll');
   const turnIndicator = document.getElementById('current-player-name');
   const diceResult = document.getElementById('dice-result');
   const messageArea = document.getElementById('message-area');
@@ -26,6 +25,145 @@
   let homeCoords = {};
   let yardCoords = {};
   let rollCounts = [0, 0, 0, 0, 0, 0];
+
+  const diceRollSound = new Audio('die-roll-sound.mp3');
+  diceRollSound.preload = 'auto';
+  let isRolling = false;
+  let isTokenMoving = false;
+
+  const orientations = {
+      1: { x: 0, y: 0 },
+      2: { x: 0, y: 90 },
+      3: { x: 90, y: 0 },
+      4: { x: -90, y: 0 },
+      5: { x: 0, y: -90 },
+      6: { x: 0, y: 180 }
+  };
+
+  function animateDice(result) {
+      if (isRolling) return Promise.resolve();
+      isRolling = true;
+
+      diceRollSound.pause();
+      diceRollSound.currentTime = 0;
+      diceRollSound.play().catch(e => console.log('Audio play failed', e));
+
+      const diceCube = document.getElementById('dice-cube');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const target = orientations[result];
+
+      if (prefersReducedMotion) {
+          diceCube.style.transform = `rotateX(${target.x}deg) rotateY(${target.y}deg) rotateZ(0deg)`;
+          isRolling = false;
+          return Promise.resolve();
+      }
+
+      const extraX = Math.floor(Math.random() * 3 + 2) * 360; 
+      const extraY = Math.floor(Math.random() * 3 + 2) * 360; 
+      const zWobble = Math.random() * 10 - 5;
+
+      if (typeof diceCube.dataset.rotX === 'undefined') {
+          diceCube.dataset.rotX = 0;
+          diceCube.dataset.rotY = 0;
+      }
+
+      let currentX = parseInt(diceCube.dataset.rotX);
+      let currentY = parseInt(diceCube.dataset.rotY);
+
+      let diffX = target.x - (currentX % 360);
+      if (diffX < 0) diffX += 360;
+      let diffY = target.y - (currentY % 360);
+      if (diffY < 0) diffY += 360;
+
+      let newX = currentX + diffX + extraX;
+      let newY = currentY + diffY + extraY;
+
+      diceCube.dataset.rotX = newX;
+      diceCube.dataset.rotY = newY;
+
+      diceCube.style.transform = `rotateX(${newX}deg) rotateY(${newY}deg) rotateZ(${zWobble}deg)`;
+
+      return new Promise(resolve => {
+          const onEnd = (e) => {
+              if (e.propertyName === 'transform') {
+                  diceCube.removeEventListener('transitionend', onEnd);
+                  isRolling = false;
+                  resolve();
+              }
+          };
+          diceCube.addEventListener('transitionend', onEnd);
+          setTimeout(() => {
+              if (isRolling) {
+                  diceCube.removeEventListener('transitionend', onEnd);
+                  isRolling = false;
+                  resolve();
+              }
+          }, 2000);
+      });
+  }
+
+  async function animateTokenWalk(token, diceRoll, color) {
+      if (isTokenMoving) return;
+      
+      const path = [];
+      let currentState = token.state;
+      let currentPos = token.position;
+      
+      if (currentState === 'YARD') {
+          if (diceRoll === 6) {
+              path.push({ state: 'TRACK', position: boardModel.getStartPositions(game.playerCount)[color] });
+          }
+      } else {
+          for (let i = 1; i <= diceRoll; i++) {
+              const dummyTokens = [ { id: 'dummy', color, state: currentState, position: currentPos } ];
+              const moves = boardModel.getLegalMoves(dummyTokens, color, 1, game.playerCount);
+              if (moves.length > 0) {
+                  const res = boardModel.applyMove(dummyTokens, moves[0], game.playerCount);
+                  const nextToken = res.nextTokens[0];
+                  path.push({ state: nextToken.state, position: nextToken.position });
+                  currentState = nextToken.state;
+                  currentPos = nextToken.position;
+              } else {
+                  break;
+              }
+          }
+      }
+      
+      if (path.length === 0) return;
+      
+      isTokenMoving = true;
+      document.getElementById('board-svg').classList.add('is-moving');
+      
+      const circle = layerTokens.querySelector(`circle[data-id="${token.id}"]`);
+      if (circle) {
+          layerTokens.appendChild(circle); 
+          for (const step of path) {
+              let pt;
+              if (step.state === 'TRACK') {
+                  pt = trackCoords[step.position];
+              } else if (step.state === 'HOME_STRETCH') {
+                  pt = homeStretchCoords[color][step.position];
+              } else if (step.state === 'HOME') {
+                  const playerIdx = boardModel.PLAYERS.indexOf(color);
+                  const angle = (playerIdx * 2 * Math.PI) / game.playerCount;
+                  const radius = SQUARE_SIZE * 1.2;
+                  pt = { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
+                  const idx = parseInt(token.id.split('-')[1]);
+                  pt.x += (idx % 2 === 0 ? 1 : -1) * 5;
+                  pt.y += (idx < 2 ? 1 : -1) * 5;
+              }
+              if (pt) {
+                  circle.setAttribute('cx', pt.x);
+                  circle.setAttribute('cy', pt.y);
+                  await new Promise(r => setTimeout(r, 200));
+              }
+          }
+      }
+      
+      isTokenMoving = false;
+      document.getElementById('board-svg').classList.remove('is-moving');
+  }
 
   function createSvgElement(tag, attrs) {
     const el = document.createElementNS(SVG_NS, tag);
@@ -180,16 +318,7 @@
       }));
     }
 
-    const homeText = createSvgElement('text', {
-      x: 0, y: 0,
-      'text-anchor': 'middle',
-      'dominant-baseline': 'central',
-      fill: '#333',
-      'font-size': '20px',
-      'font-weight': 'bold'
-    });
-    homeText.textContent = 'HOME';
-    layerPaths.appendChild(homeText);
+    // Removed "HOME" text to allow space for the dice
     
     const safeSquares = boardModel.getSafeSquares(playerCount);
     const starts = boardModel.getStartPositions(playerCount);
@@ -304,7 +433,10 @@
               circle.setAttribute('stroke', '#fff');
               circle.setAttribute('stroke-width', '4');
               circle.style.cursor = 'pointer';
-              circle.addEventListener('click', () => {
+              circle.classList.add('playable-token');
+              circle.addEventListener('click', async () => {
+                  if (isTokenMoving) return;
+                  await animateTokenWalk(token, game.currentRoll, token.color);
                   gameState.handleMove(game, token.id);
                   updateUI();
               });
@@ -320,14 +452,15 @@
     turnIndicator.textContent = currentPlayer.toUpperCase();
     turnIndicator.style.color = `var(--${currentPlayer})`;
     
+    const diceCube = document.getElementById('dice-cube');
     if (game.phase === 'ROLL') {
-      btnRoll.disabled = false;
+      diceCube.classList.add('playable-dice');
       messageArea.textContent = 'Waiting for roll...';
     } else if (game.phase === 'MOVE') {
-      btnRoll.disabled = true;
+      diceCube.classList.remove('playable-dice');
       messageArea.textContent = 'Select a token to move.';
     } else if (game.phase === 'GAME_OVER') {
-      btnRoll.disabled = true;
+      diceCube.classList.remove('playable-dice');
       messageArea.textContent = `${game.winner.toUpperCase()} WINS!`;
     }
     
@@ -353,7 +486,7 @@
           
           const bar = document.createElement('div');
           bar.className = 'bar';
-          bar.style.height = `${(rollCounts[i] / max) * 80}px`;
+          bar.style.height = `${(rollCounts[i] / max) * 100}px`;
           
           const lbl = document.createElement('div');
           lbl.className = 'bar-label';
@@ -365,17 +498,22 @@
       }
   }
 
-  btnRoll.addEventListener('click', () => {
+  document.getElementById('dice-cube').addEventListener('click', async () => {
+    if (isRolling || game.phase !== 'ROLL') return;
     const roll = window.rollDie();
     diceResult.textContent = `Rolled: ${roll}`;
     updateHistogram(roll);
+    
+    await animateDice(roll);
     
     gameState.handleRoll(game, roll);
     
     if (game.phase === 'MOVE') {
         const moves = boardModel.getLegalMoves(game.tokens, gameState.getCurrentPlayer(game), roll, game.playerCount);
         if (moves.length === 1) {
-            setTimeout(() => {
+            setTimeout(async () => {
+                const token = game.tokens.find(t => t.id === moves[0].tokenId);
+                await animateTokenWalk(token, roll, token.color);
                 gameState.handleMove(game, moves[0].tokenId);
                 updateUI();
             }, 300);

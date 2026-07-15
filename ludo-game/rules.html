@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules of Ludo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="rules-container">
+        <button id="btn-back" onclick="window.location.href='index.html'" style="margin-bottom: 20px;">&larr; Back to Game</button>
+        <h1>Rules of Ludo</h1>
+        <h2 id="rules-of-the-game">Rules of the Game</h2>
+    <h3 id="setup">Setup</h3>
+    <ul>
+    <li>The game can be played by 4 or 5 players.</li>
+    <li>Each player starts with 4 tokens in their respective colored yard (bank).</li>
+    <li>Players take turns rolling the dice in a clockwise order.</li>
+    </ul>
+    <h3 id="entering-the-track">Entering the Track</h3>
+    <ul>
+    <li>To move a token out of the yard and onto the start square, a player must roll a <strong>6</strong>.</li>
+    <li>If a player does not roll a 6 and has no other tokens on the track, their turn ends.</li>
+    </ul>
+    <h3 id="movement">Movement</h3>
+    <ul>
+    <li>Tokens move clockwise along the main track according to the number rolled on the dice.</li>
+    <li>A player must move a token if a valid move is available.</li>
+    <li><strong>Bonus Rolls</strong>: Rolling a 6 grants the player an extra roll. However, rolling three 6s in a row forfeits the turn!</li>
+    </ul>
+    <h3 id="capturing">Capturing</h3>
+    <ul>
+    <li>If a player&#39;s token lands on exactly the same square as an opponent&#39;s token, the opponent&#39;s token is captured and sent back to their yard.</li>
+    <li>Capturing an opponent grants the capturing player an extra roll.</li>
+    <li><strong>Safe Squares</strong>: Certain squares on the board (marked by colored start bases and grey circles) are safe squares. Tokens cannot be captured when resting on these squares.</li>
+    </ul>
+    <h3 id="blocking">Blocking</h3>
+    <ul>
+    <li>If two or more tokens of the <strong>same color</strong> land on the same square, they form a <strong>block</strong>.</li>
+    <li>Opposing tokens cannot capture, land on, or pass a block! The block acts as an impassable barrier for all opponents.</li>
+    </ul>
+    <h3 id="reaching-home">Reaching Home</h3>
+    <ul>
+    <li>After traveling a full lap around the board, a token turns into its own colored &quot;Home Stretch&quot;.</li>
+    <li>To reach the final <strong>HOME</strong> square, a player must roll the <strong>exact number</strong> required. Over-rolling prevents the token from moving.</li>
+    <li>Landing a token in the HOME square grants the player an extra roll.</li>
+    <li>The first player to safely navigate all 4 of their tokens into the HOME square wins the game!</li>
+    </ul>
+    </div>
+</body>
+</html>
