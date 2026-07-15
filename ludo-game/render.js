@@ -146,7 +146,8 @@
                   pt = homeStretchCoords[color][step.position];
               } else if (step.state === 'HOME') {
                   const playerIdx = boardModel.PLAYERS.indexOf(color);
-                  const angle = (playerIdx * 2 * Math.PI) / game.playerCount;
+                  const totalArms = game.playerCount === 5 ? 5 : 4;
+                  const angle = (playerIdx * 2 * Math.PI) / totalArms;
                   const radius = SQUARE_SIZE * 1.2;
                   pt = { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
                   const idx = parseInt(token.id.split('-')[1]);
@@ -233,7 +234,7 @@
 
   // --- 4-PLAYER CROSS GEOMETRY ---
   function initCrossGeometry(playerCount) {
-    const activeColors = boardModel.PLAYERS.slice(0, playerCount);
+    const activeColors = boardModel.getActivePlayers(playerCount);
     
     function getAngleForArm(armIndex) {
       return (armIndex * Math.PI / 2); 
@@ -265,16 +266,17 @@
       trackCoords.push(transformPoint({ x, y }, actualArmIndex));
     }
 
-    activeColors.forEach((color, i) => {
+    activeColors.forEach((color) => {
+      const armIndex = boardModel.PLAYERS.indexOf(color);
       homeStretchCoords[color] = [];
       for (let j = 4; j >= 0; j--) {
         const x = 1.5 * SQUARE_SIZE + j * SQUARE_SIZE + SQUARE_SIZE / 2;
-        homeStretchCoords[color].push(transformPoint({ x, y: 0 }, i));
+        homeStretchCoords[color].push(transformPoint({ x, y: 0 }, armIndex));
       }
       
       homeCoords[color] = { x: 0, y: 0 };
 
-      const angle = getAngleForArm(i) + Math.PI / 4;
+      const angle = getAngleForArm(armIndex) + Math.PI / 4;
       const ycCenter = { x: 4.5 * SQUARE_SIZE * Math.cos(angle), y: 4.5 * SQUARE_SIZE * Math.sin(angle) };
       
       const YARD_OFFSET = SQUARE_SIZE * 0.7;
@@ -359,7 +361,7 @@
       }
     });
 
-    const activeColors = boardModel.PLAYERS.slice(0, playerCount);
+    const activeColors = boardModel.getActivePlayers(playerCount);
     activeColors.forEach((color) => {
       homeStretchCoords[color].forEach(pt => {
         layerPaths.appendChild(createSvgElement('rect', {
@@ -407,7 +409,8 @@
         pt = homeStretchCoords[token.color][token.position];
       } else if (token.state === 'HOME') {
         const playerIdx = boardModel.PLAYERS.indexOf(token.color);
-        const angle = (playerIdx * 2 * Math.PI) / game.playerCount;
+        const totalArms = game.playerCount === 5 ? 5 : 4;
+        const angle = (playerIdx * 2 * Math.PI) / totalArms;
         const radius = SQUARE_SIZE * 1.2;
         pt = { x: Math.cos(angle) * radius, y: Math.sin(angle) * radius };
         

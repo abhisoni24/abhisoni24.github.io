@@ -2,7 +2,7 @@
   const bm = (typeof require !== 'undefined') ? require('./boardModel.js') : window.boardModel;
 
   function createGame(playerCount) {
-    const activePlayers = bm.PLAYERS.slice(0, playerCount);
+    const activePlayers = bm.getActivePlayers(playerCount);
     return {
       playerCount,
       activePlayers,

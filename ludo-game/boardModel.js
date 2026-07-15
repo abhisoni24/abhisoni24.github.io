@@ -49,11 +49,19 @@
    * }
    */
 
+  function getActivePlayers(playerCount) {
+    if (playerCount === 2) {
+      return ['red', 'yellow'];
+    }
+    return PLAYERS.slice(0, playerCount);
+  }
+
   // Pure function to generate initial tokens
   function createInitialTokens(playerCount) {
     const tokens = [];
+    const active = getActivePlayers(playerCount);
     for (let i = 0; i < playerCount; i++) {
-      const color = PLAYERS[i];
+      const color = active[i];
       for (let j = 0; j < 4; j++) {
         tokens.push({
           id: `${color}-${j}`,
@@ -177,6 +185,7 @@
 
   const api = {
     PLAYERS,
+    getActivePlayers,
     getStartPositions,
     getSafeSquares,
     getTrackLength,
